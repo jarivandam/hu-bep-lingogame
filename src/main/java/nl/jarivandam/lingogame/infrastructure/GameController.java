@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("games")
 public class GameController {
     @Autowired
     GameService gameService;
@@ -16,17 +17,22 @@ public class GameController {
     @Autowired
     GameRepository repository;
 
-    @PostMapping("/game")
+    @GetMapping
+    List<Game> all(){
+        return repository.findAll();
+    }
+
+//    @GetMapping("/{id}")
+//    public Game getById(@PathVariable String id){
+//        return repository.findById(Long.valueOf(id)).get();
+//    }
+
+    @PostMapping
     Game newGame (@RequestBody Game newGame){
         return repository.save(newGame);
     }
 
-    @GetMapping("/games")
-    List<Game> all(){
-       return repository.findAll();
-    }
-
-    @GetMapping("/games/{id}")
+    @GetMapping("/{id}")
     Game singleGame(@PathVariable Long id){
         return repository.findById(id).orElse(null);
     }

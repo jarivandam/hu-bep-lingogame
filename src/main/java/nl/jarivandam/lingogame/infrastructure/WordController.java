@@ -1,10 +1,10 @@
 package nl.jarivandam.lingogame.infrastructure;
 
+import nl.jarivandam.lingogame.application.WordRepository;
 import nl.jarivandam.lingogame.application.WordService;
 import nl.jarivandam.lingogame.domain.Word;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -12,6 +12,9 @@ import java.util.List;
 public class WordController {
     @Autowired
     WordService wordService;
+
+    @Autowired
+    WordRepository wordRepository;
 
     @GetMapping("/words")
     public List<Word> getWords(){
@@ -22,5 +25,10 @@ public class WordController {
     @GetMapping("/randomWord")
     public Word getRandomWord(){
             return wordService.getRandom();
+    }
+
+    @PostMapping("/words")
+    public Word newWord(@RequestBody Word newWord){
+        return wordRepository.save(newWord);
     }
 }

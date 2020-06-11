@@ -22,6 +22,7 @@ public class WordService {
         return repository.findById(id);
     }
 
+
     public Word getRandom(){
         Long maxWordNumber = repository.count();
         Long randomNumber = ThreadLocalRandom.current().nextLong(1,maxWordNumber);

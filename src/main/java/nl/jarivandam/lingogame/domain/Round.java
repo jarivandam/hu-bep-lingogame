@@ -3,14 +3,17 @@ package nl.jarivandam.lingogame.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
+@Table(name = "round")
 public class Round {
     @Id
     @GeneratedValue
     private long id;
     @ManyToOne
     private Game game;
+
     private int turnsPlayed = 0;
 
     @OneToOne
@@ -27,9 +30,13 @@ public class Round {
         this.word = word;
     }
 
+    @OneToMany(mappedBy = "round",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    List<Turn> turns;
+
     public int getTurnsPlayed(){
         return this.turnsPlayed;
     }
+
     @JsonIgnore
     public Word getWord(){
         return this.word;
