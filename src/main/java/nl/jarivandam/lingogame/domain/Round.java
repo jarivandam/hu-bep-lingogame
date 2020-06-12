@@ -3,6 +3,7 @@ package nl.jarivandam.lingogame.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -13,8 +14,6 @@ public class Round {
     private long id;
     @ManyToOne
     private Game game;
-
-    private int turnsPlayed = 0;
 
     @OneToOne
     private Word word;
@@ -31,10 +30,10 @@ public class Round {
     }
 
     @OneToMany(mappedBy = "round",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    List<Turn> turns;
+    List<Turn> turns = new ArrayList<Turn> ();
 
     public int getTurnsPlayed(){
-        return this.turnsPlayed;
+        return this.turns.size();
     }
 
     @JsonIgnore

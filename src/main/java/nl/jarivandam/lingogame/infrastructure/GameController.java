@@ -3,6 +3,7 @@ package nl.jarivandam.lingogame.infrastructure;
 import nl.jarivandam.lingogame.application.GameRepository;
 import nl.jarivandam.lingogame.application.GameService;
 import nl.jarivandam.lingogame.domain.Game;
+import nl.jarivandam.lingogame.domain.Score;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,11 +23,6 @@ public class GameController {
         return repository.findAll();
     }
 
-//    @GetMapping("/{id}")
-//    public Game getById(@PathVariable String id){
-//        return repository.findById(Long.valueOf(id)).get();
-//    }
-
     @PostMapping
     Game newGame (@RequestBody Game newGame){
         return repository.save(newGame);
@@ -36,4 +32,5 @@ public class GameController {
     Game singleGame(@PathVariable Long id){
         return repository.findById(id).orElse(null);
     }
+
 }

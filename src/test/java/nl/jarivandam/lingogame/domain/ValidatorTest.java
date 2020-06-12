@@ -71,6 +71,40 @@ public class ValidatorTest {
         this.expected.add(CharPresent.FAULT);
     }
 
+    @Test
+    public void twoWordsOnSameValidator(){
+        this.goodWord = new Word("drang");
+        this.guesedWord = new Word("draai");
+
+        this.expected.add(CharPresent.GOOD);
+        this.expected.add(CharPresent.GOOD);
+        this.expected.add(CharPresent.GOOD);
+        this.expected.add(CharPresent.FAULT);
+        this.expected.add(CharPresent.FAULT);
+        this.checkResult();
+
+        this.expected = new ArrayList<CharPresent>();
+        this.guesedWord = new Word("delen");
+        this.expected.add(CharPresent.GOOD);
+        this.expected.add(CharPresent.FAULT);
+        this.expected.add(CharPresent.FAULT);
+        this.expected.add(CharPresent.FAULT);
+        this.expected.add(CharPresent.CONTAINS);
+
+    }
+
+    @Test
+    public void testWithEmptyGuesedWord(){
+        this.goodWord = new Word("drang");
+        this.guesedWord = null;
+
+        this.expected.add(CharPresent.FAULT);
+        this.expected.add(CharPresent.FAULT);
+        this.expected.add(CharPresent.FAULT);
+        this.expected.add(CharPresent.FAULT);
+        this.expected.add(CharPresent.FAULT);
+    }
+
     @AfterEach
     public void checkResult(){
         this.result = this.validator.validate(guesedWord,goodWord);
