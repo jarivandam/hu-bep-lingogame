@@ -62,3 +62,12 @@ jobs:
           registry: docker.pkg.github.com
           repository: ${{ github.repository }}/lingogame
           tag_with_ref: true
+
+      - name: Push to Heroku
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secret.HEROKU_USERNAME }}
+          password: ${{ secrets.HEROKU_TOKEN }}
+          registry: registry.heroku.com
+          repository: ${{ github.repository }}/lingogame/web
+          tag_with_ref: true
