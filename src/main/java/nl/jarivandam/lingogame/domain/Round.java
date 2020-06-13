@@ -11,9 +11,12 @@ import java.util.List;
 public class Round {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
+
     @ManyToOne
-    private Game game;
+    @JoinColumn(name ="game_id",nullable = false)
+    @JsonIgnore
+    Game game;
 
     @OneToOne
     private Word word;
@@ -25,15 +28,23 @@ public class Round {
         this.game = game;
     }
     public Round(Word word){
-
         this.word = word;
     }
 
     @OneToMany(mappedBy = "round",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     List<Turn> turns = new ArrayList<Turn> ();
 
+    public long getId() {
+        return id;
+    }
+
     public int getTurnsPlayed(){
         return this.turns.size();
+    }
+
+    public Boolean won(){
+        Turn lastTurn = turns.get(this.turns.size());
+        return lastTurn.isWon();
     }
 
     @JsonIgnore

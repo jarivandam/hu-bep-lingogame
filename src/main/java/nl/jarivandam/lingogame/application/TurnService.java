@@ -32,11 +32,11 @@ public class TurnService {
         Word databaseSearch  = wordRepository.findByWord(newTurn.getGuessedWord().getWord());
 
         newTurn.setGuessedWord(databaseSearch);
-        Turn result = turnRepository.save(newTurn);
 
-        List<CharPresent> returnValue = validator.validate(result.getGuessedWord(),result.getRound().getWord());
+        List<CharPresent> returnValue = validator.validate(newTurn.getGuessedWord(),newTurn.getRound().getWord());
+        newTurn.setWon(validator.isWinning(returnValue));
+        turnRepository.save(newTurn);
 
         return returnValue;
-
     }
 }

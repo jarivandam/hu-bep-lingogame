@@ -3,14 +3,11 @@ package nl.jarivandam.lingogame.domain;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Component
 public class Validator {
-//    private List<CharPresent> result = new ArrayList<CharPresent>();
-
     public List <CharPresent> validate( Word guessedWord,Word correctWord) {
         List<CharPresent> result = new ArrayList<CharPresent>();
         Set<Character> correctChars = correctWord.wordAsCharsSet();
@@ -33,8 +30,15 @@ public class Validator {
                 }
             }
         }
-
         return result;
+    }
 
+    public boolean isWinning (List<CharPresent> feedback){
+        for (CharPresent item : feedback){
+            if (item != CharPresent.GOOD){
+                return false;
+            }
+        }
+        return true;
     }
 }

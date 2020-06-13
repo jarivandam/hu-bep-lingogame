@@ -1,7 +1,5 @@
 package nl.jarivandam.lingogame;
 
-import nl.jarivandam.lingogame.application.GameRepository;
-import nl.jarivandam.lingogame.application.GameService;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.jdbc.DataSourceBuilder;

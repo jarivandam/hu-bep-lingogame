@@ -1,13 +1,10 @@
 package nl.jarivandam.lingogame.infrastructure;
 
-import nl.jarivandam.lingogame.application.RoundRepository;
+
 import nl.jarivandam.lingogame.application.TurnRepository;
 import nl.jarivandam.lingogame.application.TurnService;
-import nl.jarivandam.lingogame.application.WordRepository;
 import nl.jarivandam.lingogame.domain.CharPresent;
 import nl.jarivandam.lingogame.domain.Turn;
-import nl.jarivandam.lingogame.domain.Validator;
-import nl.jarivandam.lingogame.domain.Word;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,12 +14,6 @@ import java.util.List;
 public class TurnController {
     @Autowired
     TurnRepository turnRepository;
-
-//    @Autowired
-//    RoundRepository roundRepository;
-
-//    @Autowired
-//    WordRepository wordRepository;
 
     @Autowired
     TurnService service;

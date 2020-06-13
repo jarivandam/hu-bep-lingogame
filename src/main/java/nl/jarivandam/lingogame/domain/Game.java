@@ -5,16 +5,20 @@ import java.util.List;
 
 
 @Entity
+@Table(name = "game")
 public class Game {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
 
-    @OneToMany
-    private List<Round> rounds;
+    @OneToMany(mappedBy = "game",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    List<Round> rounds;
 
     public long getId() {
         return id;
     }
 
+    public List<Round> getRounds() {
+        return rounds;
+    }
 }

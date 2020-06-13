@@ -5,6 +5,7 @@ import nl.jarivandam.lingogame.application.RoundRepository;
 import nl.jarivandam.lingogame.application.WordService;
 import nl.jarivandam.lingogame.domain.Round;
 import nl.jarivandam.lingogame.domain.Word;
+import nl.jarivandam.lingogame.domain.exceptions.RoundExceptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,11 +26,17 @@ public class RoundController {
         return roundRepository.findAll();
     }
 
+    @GetMapping("/rounds/{id}")
+    Round singleRound(@PathVariable Long id){
+        return roundRepository.findById(id).orElseThrow(() -> RoundExceptions.roundNotFound());
+    }
+
+
     @PostMapping("/rounds/{id}")
-    Round newRound(@RequestBody Round newRound,@PathVariable Long id){
+    Round newRound(@PathVariable Long id){
+        Round newRound = new Round(gameService.findById(id).get());
         Word word = wordService.getRandom();
         newRound.setWord(word);
-        newRound.setGame(gameService.findById(id).get());
         return roundRepository.save(newRound);
     }
 
