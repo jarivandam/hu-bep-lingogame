@@ -54,17 +54,11 @@ jobs:
           java-version: 14
       - name: Build jar
         run: mvn package
-        # Run a few (bash) commands to
-        # build an publish an image
-      - name: Build and publish Docker image to GitHub Packages
-        env:
-          DOCKER_IMAGE_TARGET: docker.pkg.github.com/${{ github.repository }}/lingogame:${{ github.sha }}
-          GITHUB_PACKAGE_REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # 1. Build a docker image using the specified target as a name
-          # 2. Login to GitHub docker registry by piping the token into the password prompt
-          # 3. Push the image to the registry
-        run: |
-          docker build --tag ${DOCKER_IMAGE_TARGET} .
-          echo "${GITHUB_PACKAGE_REGISTRY_TOKEN}" | docker login
-          docker.pkg.github.com -u ${{ github.actor }} --password-stdin
-          docker push ${DOCKER_IMAGE_TARGET}
+      - name: Push to GitHub Packages
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: docker.pkg.github.com
+          repository: ${{ github.repository }}/lingogame
+          tag_with_ref: true
