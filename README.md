@@ -1,6 +1,9 @@
 # hu-bep-lingogame
+# Game
+The game exists of games with one or more rounds. In each round you got 5 turns to gues the right word. 
 
-#Rest api
+
+# Rest api
 ## Games
 | Endpoint    | Method | Body | Response                        | Description       |
 |-------------|--------|------|---------------------------------|-------------------|

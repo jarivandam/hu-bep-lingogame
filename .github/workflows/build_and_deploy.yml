@@ -58,7 +58,7 @@ jobs:
         # build an publish an image
       - name: Build and publish Docker image to GitHub Packages
         env:
-          DOCKER_IMAGE_TARGET: docker.pkg.github.com/${{ github.repository }}/hu-bep-lingogame:${{ github.sha }}
+          DOCKER_IMAGE_TARGET: docker.pkg.github.com/${{ github.repository }}:${{ github.sha }}
           GITHUB_PACKAGE_REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # 1. Build a docker image using the specified target as a name
           # 2. Login to GitHub docker registry by piping the token into the password prompt
