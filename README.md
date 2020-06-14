@@ -5,10 +5,16 @@
 
 Master is deployed to: [https://hu-bep-lingogame.herokuapp.com](https://hu-bep-lingogame.herokuapp.com/games/)
 # Game
-The game exists of games with one or more rounds. In each round you got 5 turns to gues the right word. 
+The game exists of games with one or more rounds. In each round you got 5 turns to guesd the right word. 
 
 
 # Rest api
+## Scores
+| Endpoint    | Method | Body | Response                        | Description       |
+|-------------|--------|------|---------------------------------|-------------------|
+| /scores      | GET    |      |``` json [{ "id": 9313, "score": 50, "name": "Truus" },  { "id": 9352, "score": 150,  "name": "Karal" }]```| List of all scores |
+| /scores/highscores | GET    |      | ``` json[ { "id": 9320, "score": 100, "name": "Jari" }, { "id": 9322, "score": 50,  "name": "Pietje" } ] ```                    | Get all scores ordered from high to low|
+
 ## Games
 | Endpoint    | Method | Body | Response                        | Description       |
 |-------------|--------|------|---------------------------------|-------------------|
@@ -21,7 +27,6 @@ The game exists of games with one or more rounds. In each round you got 5 turns 
 |------------------|--------|------|---------------------------------|--------------------|
 | /rounds          | GET    |      | ``` json [ { "id": 1 }, { "id": 9306 } ]``` | List of all rounds |
 | /rounds/{gameId} | POST   |      | ``` json {"game": { "id": 9309 }, "turnsPlayed": 0 }``` | Start a new round  |
-| /rounds/{id}     | GET    |      | ```json { "id": 9313,"game": {"id": 9309 }, "turnsPlayed": 0 }```  | Get single round   |
 
 
 ## Turn
