@@ -1,6 +1,5 @@
 package nl.jarivandam.lingogame.infrastructure;
 
-import nl.jarivandam.lingogame.application.GameRepository;
 import nl.jarivandam.lingogame.application.GameService;
 import nl.jarivandam.lingogame.domain.Game;
 import nl.jarivandam.lingogame.domain.Score;
@@ -16,22 +15,19 @@ public class GameController {
     @Autowired
     GameService gameService;
 
-    @Autowired
-    GameRepository repository;
-
     @GetMapping("/")
     List<Game> all(){
-        return repository.findAll();
+        return gameService.findAll();
     }
 
     @PostMapping
     Game newGame (){
-        return repository.save(new Game());
+        return gameService.save(new Game());
     }
 
     @GetMapping("/{id}")
     Game singleGame(@PathVariable Long id){
-        return repository.findById(id).orElseThrow(() -> GameExceptions.gameNotFound());
+        return gameService.findById(id).orElseThrow(() -> GameExceptions.gameNotFound());
     }
 
     @PostMapping("/{id}/end")

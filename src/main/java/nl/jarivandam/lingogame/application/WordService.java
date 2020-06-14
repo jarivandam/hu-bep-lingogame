@@ -18,7 +18,6 @@ public class WordService {
     }
 
     public Optional<Word> findById(Integer id) {
-
         return repository.findById(id);
     }
 

@@ -1,8 +1,5 @@
 package nl.jarivandam.lingogame.domain.exceptions;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
-
 public class TurnExceptions  extends RuntimeException{
     public TurnExceptions(String message){
         super(message);

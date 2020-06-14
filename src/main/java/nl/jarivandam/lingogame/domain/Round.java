@@ -43,7 +43,7 @@ public class Round {
     }
 
     public Boolean won(){
-        Turn lastTurn = turns.get(this.turns.size());
+        Turn lastTurn = turns.get(this.turns.size() -1);
         return lastTurn.isWon();
     }
 
@@ -62,5 +62,9 @@ public class Round {
 
     public void setGame(Game game) {
         this.game = game;
+    }
+
+    public void setTurns(List<Turn> turns) {
+        this.turns = turns;
     }
 }

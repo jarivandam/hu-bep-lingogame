@@ -1,7 +1,5 @@
 package nl.jarivandam.lingogame.domain;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -9,6 +7,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("Check validation rules of words")
 public class ValidatorTest {
@@ -103,6 +103,33 @@ public class ValidatorTest {
         this.expected.add(CharPresent.FAULT);
         this.expected.add(CharPresent.FAULT);
         this.expected.add(CharPresent.FAULT);
+    }
+
+    @Test
+    public void VerifyWinningTurn(){
+        this.goodWord = new Word("drang");
+        this.guesedWord = new Word("drang");
+
+        this.expected.add(CharPresent.GOOD);
+        this.expected.add(CharPresent.GOOD);
+        this.expected.add(CharPresent.GOOD);
+        this.expected.add(CharPresent.GOOD);
+        this.expected.add(CharPresent.GOOD);
+        this.result = this.validator.validate(guesedWord,goodWord);
+        assertTrue(validator.isWinning(result));
+    }
+    @Test
+    public void VerifyNotWinningTurn(){
+        this.goodWord = new Word("drang");
+        this.guesedWord = new Word("dronk");
+
+        this.expected.add(CharPresent.GOOD);
+        this.expected.add(CharPresent.GOOD);
+        this.expected.add(CharPresent.FAULT);
+        this.expected.add(CharPresent.GOOD);
+        this.expected.add(CharPresent.FAULT);
+        this.result = this.validator.validate(guesedWord,goodWord);
+        assertFalse(validator.isWinning(result));
     }
 
     @AfterEach
