@@ -26,8 +26,8 @@ public class GameService {
         return gameRepository.findById(id);
     }
 
-    public void startGame(){
-        this.gameRepository.save(new Game());
+    public Game save(Game game){
+        return gameRepository.save(game);
     }
 
     public Score endGame(Long id, Score score){

@@ -1,9 +1,9 @@
 # hu-bep-lingogame
 # Build status
-![Github build only](https://github.com/jakah/hu-bep-lingowords/workflows/Build%20only/badge.svg)
-[![codecov](https://codecov.io/gh/jakah/hu-bep-lingowords/branch/master/graph/badge.svg?token=B0JRS3L9UO)](https://codecov.io/gh/jakah/hu-bep-lingowords)
+![Github build only](https://github.com/jakah/hu-bep-lingogame/workflows/Build%20only/badge.svg)
+[![codecov](https://codecov.io/gh/jakah/hu-bep-lingogame/branch/master/graph/badge.svg?token=F0BA6WXTOU)](https://codecov.io/gh/jakah/hu-bep-lingogame)
 
-
+Master is deployed to: [https://hu-bep-lingogame.herokuapp.com](https://hu-bep-lingogame.herokuapp.com/games/)
 # Game
 The game exists of games with one or more rounds. In each round you got 5 turns to gues the right word. 
 
