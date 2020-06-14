@@ -105,6 +105,33 @@ public class ValidatorTest {
         this.expected.add(CharPresent.FAULT);
     }
 
+    @Test
+    public void VerifyWinningTurn(){
+        this.goodWord = new Word("drang");
+        this.guesedWord = new Word("drang");
+
+        this.expected.add(CharPresent.GOOD);
+        this.expected.add(CharPresent.GOOD);
+        this.expected.add(CharPresent.GOOD);
+        this.expected.add(CharPresent.GOOD);
+        this.expected.add(CharPresent.GOOD);
+        this.result = this.validator.validate(guesedWord,goodWord);
+        assertTrue(validator.isWinning(result));
+    }
+    @Test
+    public void VerifyNotWinningTurn(){
+        this.goodWord = new Word("drang");
+        this.guesedWord = new Word("dronk");
+
+        this.expected.add(CharPresent.GOOD);
+        this.expected.add(CharPresent.GOOD);
+        this.expected.add(CharPresent.FAULT);
+        this.expected.add(CharPresent.GOOD);
+        this.expected.add(CharPresent.FAULT);
+        this.result = this.validator.validate(guesedWord,goodWord);
+        assertFalse(validator.isWinning(result));
+    }
+
     @AfterEach
     public void checkResult(){
         this.result = this.validator.validate(guesedWord,goodWord);

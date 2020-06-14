@@ -14,8 +14,19 @@ public class Game {
     @OneToMany(mappedBy = "game",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     List<Round> rounds;
 
+    public Game(){
+
+    };
     public long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setRounds(List<Round> rounds) {
+        this.rounds = rounds;
     }
 
     public List<Round> getRounds() {

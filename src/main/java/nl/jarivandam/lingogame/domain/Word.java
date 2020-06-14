@@ -41,4 +41,8 @@ public class Word {
         }
         return result;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
